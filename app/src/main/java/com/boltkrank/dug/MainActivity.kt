@@ -1,4 +1,4 @@
-package com.boltkrank.Dug
+package com.boltkrank.dug
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DugApp(vm: DigViewModel = viewModel()) {
+fun DugApp(vm: DugViewModel = viewModel()) {
     val state by vm.state.collectAsState()
 
     Scaffold(
