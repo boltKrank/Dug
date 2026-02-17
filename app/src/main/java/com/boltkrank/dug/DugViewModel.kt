@@ -33,7 +33,7 @@ class DugViewModel : ViewModel() {
         _state.update { it.copy(isBusy = true, output = "") }
 
         viewModelScope.launch(Dispatchers.IO) {
-            val name = state.value.inputName.ifBlank { "www.google.com" }.trimEnd('.')
+            val name = state.value.inputName.ifBlank { "www.2google.com" }.trimEnd('.')
             val server = state.value.serverIp.ifBlank { "8.8.8.8" }
             val port = state.value.port
 
@@ -89,4 +89,15 @@ class DugViewModel : ViewModel() {
         if (labels.size <= 2) return name
         return labels.takeLast(2).joinToString(".")
     }
-}
+
+
+        private fun typeName(t: Int): String =
+            DnsType.fromCode(t)?.name ?: "TYPE$t"
+
+        private fun className(c: Int): String =
+            when (c) {
+                1 -> "IN"
+                else -> "CLASS$c"
+            }
+    }
+
